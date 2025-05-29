@@ -11,17 +11,20 @@ import java.util.Map;
 /**
  * Console-based user interface for the Motorola 6800 Assembler
  */
-public class ConsoleUI {
+public class ConsoleUI implements UserInterface {
     
     private final Scanner scanner;
-    
-    public ConsoleUI() {
+      public ConsoleUI() {
         scanner = new Scanner(System.in);
     }
 
-    /**
+    @Override
+    public void initialize() {
+        // Console UI is already initialized in constructor
+    }    /**
      * Shows the welcome message
      */
+    @Override
     public void showWelcome() {
         System.out.println("===============================================");
         System.out.println("       Motorola 6800 Assembler & Simulator");
@@ -35,6 +38,7 @@ public class ConsoleUI {
     }    /**
      * Shows the main menu and returns user choice
      */
+    @Override
     public int showMainMenu() {
         System.out.println("=== MAIN MENU ===");
         System.out.println("1. Enter assembly code manually");

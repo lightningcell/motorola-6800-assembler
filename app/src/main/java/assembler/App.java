@@ -4,13 +4,15 @@ import assembler.parser.*;
 import assembler.assembler.*;
 import assembler.simulator.*;
 import assembler.ui.*;
+import assembler.ui.gui.*;
 import assembler.util.*;
 import assembler.ai.*;
+import javafx.application.Application;
 import java.util.*;
 
 /**
  * Main application class for the Motorola 6800 Assembler.
- * Provides console-based interface for assembling and simulating 6800 programs.
+ * Supports both GUI and console interfaces for assembling and simulating 6800 programs.
  * 
  * Features:
  * - Interactive assembly code input/editing
@@ -20,12 +22,12 @@ import java.util.*;
  * - CPU simulation with step-by-step debugging
  * - Memory and register visualization
  * - File I/O for loading/saving programs
+ * - Modern JavaFX GUI with syntax highlighting
  * 
  * @author Motorola 6800 Assembler Team
  */
 public class App {
-    
-    private final ConsoleUI ui;
+      private UserInterface ui;
     private final AssemblyParser parser;
     private final CodeGenerator codeGenerator;
     private final ExecutionEngine simulator;
@@ -36,7 +38,10 @@ public class App {
     private String sourceCode;
     
     public App() {
-        this.ui = new ConsoleUI();
+        this(false); // Default to console mode
+    }
+    
+    public App(boolean useGUI) {
         this.parser = new AssemblyParser();
         this.codeGenerator = new CodeGenerator();
         this.simulator = new ExecutionEngine();
@@ -44,14 +49,44 @@ public class App {
         this.currentProgram = new ArrayList<>();
         this.machineCode = new HashMap<>();
         this.sourceCode = "";
+        
+        if (useGUI) {
+            // UI will be set when JavaFX application starts
+            this.ui = null;
+        } else {
+            this.ui = new ConsoleUI();
+        }
+    }
+    
+    /**
+     * Set the user interface (used by GUI mode)
+     */
+    public void setUserInterface(UserInterface ui) {
+        this.ui = ui;
+    }
+    
+    /**
+     * Get the current user interface
+     */
+    public UserInterface getUserInterface() {
+        return ui;
     }
     
     /**
      * Main entry point for the application.
      */
     public static void main(String[] args) {
-        App app = new App();
-        app.run();
+        // Check command line arguments for GUI mode
+        boolean useGUI = args.length > 0 && "--gui".equals(args[0]);
+        
+        if (useGUI) {
+            // Launch JavaFX application
+            Application.launch(AssemblerGUI.class, args);
+        } else {
+            // Run in console mode
+            App app = new App(false);
+            app.run();
+        }
     }
     
     /**
@@ -597,5 +632,75 @@ public class App {
      */
     private void showApiKeyStatus() {
         ui.showApiKeyStatus(aiGenerator.isInitialized());
+    }
+    
+    /**
+     * Get the assembly parser
+     */
+    public AssemblyParser getParser() {
+        return parser;
+    }
+    
+    /**
+     * Get the code generator
+     */
+    public CodeGenerator getCodeGenerator() {
+        return codeGenerator;
+    }
+    
+    /**
+     * Get the execution engine (simulator)
+     */
+    public ExecutionEngine getSimulator() {
+        return simulator;
+    }
+    
+    /**
+     * Get the AI assembly generator
+     */
+    public AIAssemblyGenerator getAIGenerator() {
+        return aiGenerator;
+    }
+    
+    /**
+     * Get the current program (assembly lines)
+     */
+    public List<AssemblyLine> getCurrentProgram() {
+        return currentProgram;
+    }
+    
+    /**
+     * Set the current program
+     */
+    public void setCurrentProgram(List<AssemblyLine> program) {
+        this.currentProgram = program;
+    }
+    
+    /**
+     * Get the machine code
+     */
+    public Map<Integer, List<Integer>> getMachineCode() {
+        return machineCode;
+    }
+    
+    /**
+     * Set the machine code
+     */
+    public void setMachineCode(Map<Integer, List<Integer>> machineCode) {
+        this.machineCode = machineCode;
+    }
+    
+    /**
+     * Get the source code
+     */
+    public String getSourceCode() {
+        return sourceCode;
+    }
+    
+    /**
+     * Set the source code
+     */
+    public void setSourceCode(String sourceCode) {
+        this.sourceCode = sourceCode;
     }
 }

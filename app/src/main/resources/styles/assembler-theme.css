@@ -1,0 +1,498 @@
+/*
+ * Modern Dark Theme for Motorola 6800 Assembler
+ * Professional, developer-friendly color scheme
+ */
+
+/* === Root Colors === */
+.root {
+    /* Primary colors */
+    -fx-primary-color: #2196F3;
+    -fx-primary-dark: #1976D2;
+    -fx-primary-light: #64B5F6;
+    
+    /* Background colors */
+    -fx-background-color: #1E1E1E;
+    -fx-background-secondary: #252526;
+    -fx-background-tertiary: #2D2D30;
+    
+    /* Text colors */
+    -fx-text-color: #ffffff;
+    -fx-text-secondary: #969696;
+    -fx-text-accent: #569CD6;
+    
+    /* Border colors */
+    -fx-border-color: #3C3C3C;
+    -fx-border-active: #007ACC;
+    
+    /* Status colors */
+    -fx-success-color: #4CAF50;
+    -fx-warning-color: #FF9800;
+    -fx-error-color: #F44336;
+    
+    /* AI colors */
+    -fx-ai-color: #9C27B0;
+    -fx-ai-light: #E1BEE7;
+}
+
+/* === Base Styling === */
+.application {
+    -fx-background-color: #1E1E1E;
+    -fx-text-fill: -fx-text-color;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+    -fx-font-size: 13px;
+}
+
+/* === Menu Bar === */
+.menu-bar {
+    -fx-background-color: -fx-background-secondary;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 0 0 1 0;
+}
+
+.menu-bar .menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-color;
+    -fx-padding: 5 10 5 10;
+}
+
+.menu-bar .menu-button:hover {
+    -fx-background-color: -fx-background-tertiary;
+}
+
+.context-menu {
+    -fx-background-color: -fx-background-secondary;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 2, 2);
+}
+
+.menu-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-color;
+    -fx-padding: 5 15 5 15;
+}
+
+.menu-item:hover {
+    -fx-background-color: -fx-primary-color;
+}
+
+/* === Tool Bar === */
+.tool-bar {
+    -fx-background-color: -fx-background-secondary;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 5;
+}
+
+.toolbar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-color;
+    -fx-border-color: transparent;
+    -fx-border-width: 1;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-padding: 5 10 5 10;
+    -fx-cursor: hand;
+}
+
+.toolbar-button:hover {
+    -fx-background-color: -fx-background-tertiary;
+    -fx-border-color: #3C3C3C;
+}
+
+.toolbar-button:pressed {
+    -fx-background-color: -fx-primary-dark;
+}
+
+.ai-button {
+    -fx-text-fill: -fx-ai-color !important;
+    -fx-font-weight: bold;
+}
+
+.ai-button:hover {
+    -fx-background-color: derive(-fx-ai-color, 90%);
+}
+
+/* === Tabs === */
+.tab-pane {
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: #3C3C3C;
+}
+
+.tab-pane .tab-header-area {
+    -fx-background-color: -fx-background-secondary;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 0 0 1 0;
+}
+
+.tab-pane .tab {
+    -fx-background-color: -fx-background-secondary;
+    -fx-text-fill: -fx-text-secondary;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 0 1 0 0;
+    -fx-padding: 8 12 8 12;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #1E1E1E;
+    -fx-text-fill: -fx-text-color;
+    -fx-border-color: -fx-border-active;
+    -fx-border-width: 0 1 2 0;
+}
+
+.tab-pane .tab:hover {
+    -fx-background-color: -fx-background-tertiary;
+    -fx-text-fill: -fx-text-color;
+}
+
+/* === Code Editor === */
+.code-editor {
+    -fx-background-color: #1E1E1E;
+    -fx-text-fill: #D4D4D4;
+    -fx-font-family: "Fira Code", "Consolas", "Monaco", monospace;
+    -fx-font-size: 14px;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 1;
+}
+
+.code-editor .paragraph-box:has-caret {
+    -fx-background-color: #2A2D2E;
+}
+
+.code-editor .line-number {
+    -fx-background-color: #1E1E1E;
+    -fx-text-fill: #858585;
+    -fx-font-family: "Fira Code", "Consolas", "Monaco", monospace;
+    -fx-font-size: 13px;
+    -fx-padding: 0 5 0 5;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 0 1 0 0;
+}
+
+/* === Syntax Highlighting === */
+.instruction {
+    -fx-fill: #569CD6; /* Blue for instructions */
+}
+
+.pseudo-op {
+    -fx-fill: #C586C0; /* Purple for pseudo-ops */
+}
+
+.label {
+    -fx-fill: #DCDCAA; /* Yellow for labels */
+}
+
+.comment {
+    -fx-fill: #6A9955; /* Green for comments */
+}
+
+.hex-number {
+    -fx-fill: #B5CEA8; /* Light green for hex numbers */
+}
+
+.binary-number {
+    -fx-fill: #B5CEA8; /* Light green for binary numbers */
+}
+
+.decimal-number {
+    -fx-fill: #B5CEA8; /* Light green for decimal numbers */
+}
+
+.immediate {
+    -fx-fill: #FF6B6B; /* Red for immediate values */
+}
+
+.indexed {
+    -fx-fill: #4ECDC4; /* Cyan for indexed addressing */
+}
+
+.string {
+    -fx-fill: #CE9178; /* Orange for strings */
+}
+
+/* === Console Output === */
+.console-output {
+    -fx-background-color: #0C0C0C;
+    -fx-text-fill: #CCCCCC;
+    -fx-font-family: "Consolas", "Monaco", monospace;
+    -fx-font-size: 12px;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+}
+
+/* === Tables === */
+.table-view {
+    -fx-background-color: #1E1E1E;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 1;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: -fx-background-secondary;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-color;
+    -fx-font-weight: bold;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 0 1 0 0;
+    -fx-padding: 8 5 8 5;
+}
+
+.table-view .table-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-color;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 5;
+    -fx-font-family: "Consolas", "Monaco", monospace;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: -fx-primary-color;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: white;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: -fx-background-tertiary;
+}
+
+/* === Buttons === */
+.button {
+    -fx-background-color: -fx-background-secondary;
+    -fx-text-fill: -fx-text-color;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 1;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-padding: 8 16 8 16;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: -fx-background-tertiary;
+    -fx-border-color: -fx-border-active;
+}
+
+.button:pressed {
+    -fx-background-color: -fx-primary-dark;
+}
+
+.primary-button {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+    -fx-border-color: -fx-primary-dark;
+}
+
+.primary-button:hover {
+    -fx-background-color: -fx-primary-dark;
+}
+
+.secondary-button {
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-primary-color;
+    -fx-text-fill: -fx-primary-color;
+}
+
+.secondary-button:hover {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+
+/* === Text Areas === */
+.text-area {
+    -fx-background-color: #1E1E1E;
+    -fx-text-fill: -fx-text-color;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 1;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+.text-area:focused {
+    -fx-border-color: -fx-border-active;
+    -fx-border-width: 2;
+}
+
+.code-response {
+    -fx-font-family: "Consolas", "Monaco", monospace;
+    -fx-font-size: 12px;
+    -fx-background-color: #0D1117;
+}
+
+/* === Input Fields === */
+.text-field {
+    -fx-background-color: -fx-background-secondary;
+    -fx-text-fill: -fx-text-color;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 1;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-padding: 5 8 5 8;
+}
+
+.text-field:focused {
+    -fx-border-color: -fx-border-active;
+    -fx-border-width: 2;
+}
+
+/* === Tree View === */
+.tree-view {
+    -fx-background-color: #1E1E1E;
+    -fx-text-fill: -fx-text-color;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 1;
+}
+
+.tree-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-color;
+}
+
+.tree-cell:selected {
+    -fx-background-color: -fx-primary-color;
+    -fx-text-fill: white;
+}
+
+.tree-cell:hover {
+    -fx-background-color: -fx-background-tertiary;
+}
+
+/* === Progress Bar === */
+.progress-bar {
+    -fx-background-color: -fx-background-secondary;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 1;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+}
+
+.progress-bar .bar {
+    -fx-background-color: -fx-primary-color;
+    -fx-background-radius: 2;
+}
+
+/* === Status Bar === */
+.status-bar {
+    -fx-background-color: -fx-background-secondary;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 1 0 0 0;
+}
+
+.status-bar .label {
+    -fx-text-fill: -fx-text-secondary;
+    -fx-font-size: 12px;
+}
+
+/* === Split Panes === */
+.split-pane {
+    -fx-background-color: #1E1E1E;
+}
+
+.split-pane-divider {
+    -fx-background-color: -fx-border-color;
+    -fx-border-color: #3C3C3C;
+}
+
+.split-pane-divider:hover {
+    -fx-background-color: -fx-border-active;
+}
+
+/* === Scroll Bars === */
+.scroll-bar {
+    -fx-background-color: -fx-background-secondary;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: -fx-background-tertiary;
+    -fx-background-radius: 5;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: -fx-text-secondary;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+/* === Section Headers === */
+.section-header {
+    -fx-text-fill: -fx-text-accent;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+/* === Alerts and Dialogs === */
+.alert {
+    -fx-background-color: #1E1E1E;
+}
+
+.alert .header-panel {
+    -fx-background-color: -fx-background-secondary;
+    -fx-text-fill: -fx-text-color;
+}
+
+.alert .content {
+    -fx-background-color: #1E1E1E;
+    -fx-text-fill: -fx-text-color;
+}
+
+/* === Separators === */
+.separator .line {
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* === Labels === */
+.label {
+    -fx-text-fill: -fx-text-color;
+}
+
+/* === Register Display === */
+.register-label {
+    -fx-text-fill: -fx-text-accent;
+    -fx-font-weight: bold;
+    -fx-font-family: "Consolas", "Monaco", monospace;
+}
+
+.register-value {
+    -fx-text-fill: -fx-text-color;
+    -fx-font-family: "Consolas", "Monaco", monospace;
+    -fx-background-color: -fx-background-secondary;
+    -fx-padding: 2 8 2 8;
+    -fx-border-color: #3C3C3C;
+    -fx-border-width: 1;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+}
+
+/* === Responsive Design === */
+@media (max-width: 1200px) {
+    .root {
+        -fx-font-size: 12px;
+    }
+    
+    .code-editor {
+        -fx-font-size: 13px;
+    }
+}
+
+@media (max-width: 800px) {
+    .toolbar-button {
+        -fx-padding: 3 6 3 6;
+    }
+    
+    .tab {
+        -fx-padding: 6 8 6 8;
+    }
+}
