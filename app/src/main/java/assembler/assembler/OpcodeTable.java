@@ -50,16 +50,29 @@ public class OpcodeTable {
         addInstruction("STB", AddressingMode.EXTENDED, 0xF7, 5, "Store accumulator B extended");
         
         // Add to Accumulator A (ADD)
-        addInstruction("ADD", AddressingMode.IMMEDIATE, 0x8B, 2, "Add to accumulator A immediate");
-        addInstruction("ADD", AddressingMode.DIRECT, 0x9B, 3, "Add to accumulator A direct");
-        addInstruction("ADD", AddressingMode.INDEXED, 0xAB, 5, "Add to accumulator A indexed");
-        addInstruction("ADD", AddressingMode.EXTENDED, 0xBB, 4, "Add to accumulator A extended");
-        
+        addInstruction("ADDA", AddressingMode.IMMEDIATE, 0x8B, 2, "Add to accumulator A immediate");
+        addInstruction("ADDA", AddressingMode.DIRECT, 0x9B, 3, "Add to accumulator A direct");
+        addInstruction("ADDA", AddressingMode.INDEXED, 0xAB, 5, "Add to accumulator A indexed");
+        addInstruction("ADDA", AddressingMode.EXTENDED, 0xBB, 4, "Add to accumulator A extended");
+
+        // Add to Accumulator B (ADD)
+        addInstruction("ADDB", AddressingMode.IMMEDIATE, 0xCB, 2, "Add to accumulator B immediate");
+        addInstruction("ADDB", AddressingMode.DIRECT, 0xDB, 3, "Add to accumulator B direct");
+        addInstruction("ADDB", AddressingMode.INDEXED, 0xEB, 5, "Add to accumulator B indexed");
+        addInstruction("ADDB", AddressingMode.EXTENDED, 0xFB, 4, "Add to accumulator B extended");
+    
         // Subtract from Accumulator A (SUB)
         addInstruction("SUB", AddressingMode.IMMEDIATE, 0x80, 2, "Subtract from accumulator A immediate");
         addInstruction("SUB", AddressingMode.DIRECT, 0x90, 3, "Subtract from accumulator A direct");
         addInstruction("SUB", AddressingMode.INDEXED, 0xA0, 5, "Subtract from accumulator A indexed");
         addInstruction("SUB", AddressingMode.EXTENDED, 0xB0, 4, "Subtract from accumulator A extended");
+
+        
+        // Subtract from Accumulator B (SUBB)
+        addInstruction("SUBB", AddressingMode.IMMEDIATE, 0x8C, 2, "Subtract from accumulator B immediate");
+        addInstruction("SUBB", AddressingMode.DIRECT, 0x9C, 3, "Subtract from accumulator B direct");
+        addInstruction("SUBB", AddressingMode.INDEXED, 0xAC, 5, "Subtract from accumulator B indexed");
+        addInstruction("SUBB", AddressingMode.EXTENDED, 0xBC, 4, "Subtract from accumulator B extended");
         
         // Compare Accumulator A (CMP)
         addInstruction("CMP", AddressingMode.IMMEDIATE, 0x81, 2, "Compare accumulator A immediate");

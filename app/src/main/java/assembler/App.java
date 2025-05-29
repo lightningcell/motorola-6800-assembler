@@ -6,6 +6,7 @@ import assembler.assembler.*;
 import assembler.simulator.*;
 import assembler.ui.*;
 import assembler.util.*;
+import assembler.ai.*;
 import java.util.*;
 
 /**
@@ -29,6 +30,7 @@ public class App {
     private final AssemblyParser parser;
     private final CodeGenerator codeGenerator;
     private final ExecutionEngine simulator;
+    private final AIAssemblyGenerator aiGenerator;
     
     private List<AssemblyLine> currentProgram;
     private Map<Integer, List<Integer>> machineCode;
@@ -39,6 +41,7 @@ public class App {
         this.parser = new AssemblyParser();
         this.codeGenerator = new CodeGenerator();
         this.simulator = new ExecutionEngine();
+        this.aiGenerator = new AIAssemblyGenerator(null);
         this.currentProgram = new ArrayList<>();
         this.machineCode = new HashMap<>();
         this.sourceCode = "";
@@ -62,8 +65,7 @@ public class App {
         while (running) {
             try {
                 int choice = ui.showMainMenu();
-                
-                switch (choice) {
+                  switch (choice) {
                     case 1:
                         inputAssemblyCode();
                         break;
@@ -87,6 +89,9 @@ public class App {
                         break;
                     case 8:
                         createExampleProgram();
+                        break;
+                    case 9:
+                        handleAIMenu();
                         break;
                     case 0:
                         running = false;
@@ -496,5 +501,102 @@ public class App {
         }
         
         return 0; // Empty line or comment
+    }
+    
+    /**
+     * Handle AI menu interactions.
+     */
+    private void handleAIMenu() {
+        boolean inAIMenu = true;
+        while (inAIMenu) {
+            try {
+                int choice = ui.showAIMenu();
+                
+                switch (choice) {
+                    case 1:
+                        setApiKey();
+                        break;
+                    case 2:
+                        generateCodeWithAI();
+                        break;
+                    case 3:
+                        showApiKeyStatus();
+                        break;
+                    case 0:
+                        inAIMenu = false;
+                        break;
+                    default:
+                        ui.showError("Invalid choice. Please try again.");
+                }
+                
+            } catch (Exception e) {
+                ui.showError("An error occurred in AI menu: " + e.getMessage());
+            }
+        }
+    }
+    
+    /**
+     * Set OpenAI API key.
+     */
+    private void setApiKey() {
+        try {
+            String apiKey = ui.getApiKey();
+            if (apiKey != null && !apiKey.trim().isEmpty()) {
+                aiGenerator.setApiKey(apiKey);
+                ui.showMessage("API key set successfully!");
+            } else {
+                ui.showError("Invalid API key provided.");
+            }
+        } catch (Exception e) {
+            ui.showError("Failed to set API key: " + e.getMessage());
+        }
+    }
+      /**
+     * Generate assembly code using AI.
+     */
+    private void generateCodeWithAI() {
+        try {
+            if (!aiGenerator.isInitialized()) {
+                ui.showError("Please set your OpenAI API key first (option 1).");
+                return;
+            }
+            
+            String description = ui.getAIPrompt();
+            if (description == null || description.trim().isEmpty()) {
+                ui.showError("Please provide a description for the assembly program.");
+                return;
+            }
+            
+            ui.showMessage("Generating assembly code... Please wait.");
+            
+            String generatedCode = aiGenerator.generateAssemblyCode(description);
+            
+            if (generatedCode != null && !generatedCode.trim().isEmpty()) {
+                // Show the generated code to the user
+                ui.showGeneratedCode(generatedCode);
+                
+                // Ask for confirmation before loading it
+                if (ui.confirmGeneratedCode()) {
+                    sourceCode = generatedCode;
+                    ui.showMessage("✓ AI generated code loaded successfully!");
+                    ui.showMessage("You can now use option 3 to assemble the code.");
+                } else {
+                    ui.showMessage("Code generation cancelled. Try again with a different description.");
+                }
+            } else {
+                ui.showError("Failed to generate assembly code. Please try again.");
+            }
+            
+        } catch (Exception e) {
+            ui.showError("Error generating code: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Show API key status.
+     */
+    private void showApiKeyStatus() {
+        ui.showApiKeyStatus(aiGenerator.isInitialized());
     }
 }

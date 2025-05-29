@@ -45,6 +45,7 @@ public class ConsoleUI {
         System.out.println("6. Save program to file");
         System.out.println("7. Show instruction set");
         System.out.println("8. Create example program");
+        System.out.println("9. AI Assembly Generator");
         System.out.println("0. Exit");
         return getIntInput("Enter your choice: ");
     }
@@ -318,5 +319,86 @@ public class ConsoleUI {
      */
     public void close() {
         scanner.close();
+    }
+
+    /**
+     * Shows AI configuration menu and returns user choice
+     */
+    public int showAIMenu() {
+        System.out.println("\n=== AI ASSEMBLY GENERATOR ===");
+        System.out.println("1. Set OpenAI API Key");
+        System.out.println("2. Generate assembly code with AI");
+        System.out.println("3. View current API key status");
+        System.out.println("0. Return to main menu");
+        return getIntInput("Enter choice: ");
+    }
+    
+    /**
+     * Gets OpenAI API key from user (masked input)
+     */
+    public String getApiKey() {
+        System.out.print("Enter your OpenAI API Key: ");
+        // For security, we could use Console.readPassword() but Scanner is simpler for now
+        return scanner.nextLine();
+    }
+      /**
+     * Gets AI prompt description from user
+     */
+    public String getAIPrompt() {
+        System.out.println("\n" + "=".repeat(50));
+        System.out.println("        AI ASSEMBLY CODE GENERATOR");
+        System.out.println("=".repeat(50));
+        System.out.println("Describe what you want the assembly program to do:");
+        System.out.println();
+        System.out.println("Examples:");
+        System.out.println("  • 'Add two numbers and store the result'");
+        System.out.println("  • 'Count from 1 to 10 and display each number'");
+        System.out.println("  • 'Simple calculator that adds two input values'");
+        System.out.println("  • 'Find the maximum of three numbers'");
+        System.out.println("  • 'Calculate factorial of a number'");
+        System.out.println();
+        System.out.print("Your description: ");
+        return scanner.nextLine();
+    }
+    
+    /**
+     * Shows API key status
+     */
+    public void showApiKeyStatus(boolean isSet) {
+        if (isSet) {
+            System.out.println("✓ OpenAI API Key is configured");
+        } else {
+            System.out.println("✗ OpenAI API Key is not set");
+        }
+    }
+      /**
+     * Shows generated assembly code
+     */
+    public void showGeneratedCode(String code) {
+        System.out.println("\n" + "=".repeat(50));
+        System.out.println("        AI GENERATED ASSEMBLY CODE");
+        System.out.println("=".repeat(50));
+        System.out.println();
+        
+        // Show the code with line numbers for better readability
+        String[] lines = code.split("\n");
+        for (int i = 0; i < lines.length; i++) {
+            System.out.printf("%3d: %s\n", i + 1, lines[i]);
+        }
+        
+        System.out.println();
+        System.out.println("=".repeat(50));
+        System.out.println("✓ Code has been loaded into the editor.");
+        System.out.println("You can now assemble this code using option 3.");
+        System.out.println("=".repeat(50));
+    }
+    
+    /**
+     * Asks user if they want to use the generated code
+     */
+    public boolean confirmGeneratedCode() {
+        System.out.println("\nDo you want to use this generated code? (y/n): ");
+        String response = scanner.nextLine().trim().toLowerCase();
+        return response.startsWith("y");
     }
 }
