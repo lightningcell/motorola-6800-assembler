@@ -1,0 +1,14 @@
+ORG     $1000           ; Start of the program
+        LDX     #$2000          ; Load index register X with the starting address to store results
+        LDA     #1              ; Load accumulator A with the starting value 1
+
+LOOP:
+        STA     X              ; Store the value of A at the address pointed by X
+        INCA                    ; Increment the value in accumulator A
+        INX                     ; Increment the index register X to point to the next memory location
+        CMPA    #11             ; Compare the value in accumulator A with 11
+        BNE     LOOP            ; If A is not equal to 11, branch to CountLoop
+
+        SWI                     ; Software interrupt to end the program
+
+        END                     ; End of the program

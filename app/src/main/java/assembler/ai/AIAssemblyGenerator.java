@@ -61,12 +61,11 @@ public class AIAssemblyGenerator {
             throw new IllegalStateException("AI service not initialized. Please set API key first.");
         }
         
-        String requestBody = createRequestBody(description);
-          Request request = new Request.Builder()
+        String requestBody = createRequestBody(description);          Request request = new Request.Builder()
             .url(OPENAI_API_URL)
             .addHeader("Authorization", "Bearer " + apiKey)
             .addHeader("Content-Type", "application/json")
-            .post(RequestBody.create(JSON, requestBody))
+            .post(RequestBody.create(requestBody, JSON))
             .build();
         
         try (Response response = client.newCall(request).execute()) {

@@ -1,6 +1,5 @@
 package assembler;
 
-import assembler.core.*;
 import assembler.parser.*;
 import assembler.assembler.*;
 import assembler.simulator.*;
