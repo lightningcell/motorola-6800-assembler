@@ -3,6 +3,10 @@
  * Professional, developer-friendly color scheme
  */
 
+.default-text {
+    -fx-fill: white;
+}
+
 /* === Root Colors === */
 .root {
     /* Primary colors */

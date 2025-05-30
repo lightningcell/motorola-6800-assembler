@@ -94,7 +94,7 @@ public class AssemblyHighlighter {
         
         while (matcher.find()) {
             String styleClass = null;
-            
+
             if (matcher.group("COMMENT") != null) {
                 styleClass = "comment";
             } else if (matcher.group("LABEL") != null) {
@@ -116,15 +116,17 @@ public class AssemblyHighlighter {
             } else if (matcher.group("STRING") != null) {
                 styleClass = "string";
             }
-            
+
             if (styleClass != null) {
-                spansBuilder.add(Collections.emptyList(), matcher.start() - lastKwEnd);
+                // <== BURASI GÜNCELLENDİ
+                spansBuilder.add(Collections.singleton("default-text"), matcher.start() - lastKwEnd);
                 spansBuilder.add(Collections.singleton(styleClass), matcher.end() - matcher.start());
                 lastKwEnd = matcher.end();
             }
         }
-        
-        spansBuilder.add(Collections.emptyList(), text.length() - lastKwEnd);
+
+        // <== BURASI DA GÜNCELLENDİ
+        spansBuilder.add(Collections.singleton("default-text"), text.length() - lastKwEnd);
         return spansBuilder.create();
     }
 }

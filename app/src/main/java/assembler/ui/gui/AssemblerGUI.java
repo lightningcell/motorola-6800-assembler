@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.fxmisc.richtext.CodeArea;
@@ -332,7 +333,11 @@ public class AssemblerGUI extends Application implements UserInterface {
         leftTabPane = new TabPane();
         leftTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
           // Code editor tab
-        codeTab = new Tab("Assembly Code");
+        Label tabLabel = new Label("Assembly Code");
+        tabLabel.setStyle("-fx-text-fill: white;");
+        codeTab = new Tab();
+        codeTab.setGraphic(tabLabel);
+
         codeEditor = new CodeArea();
         codeEditor.setParagraphGraphicFactory(LineNumberFactory.get(codeEditor));
         codeEditor.getStyleClass().add("code-editor");
@@ -345,7 +350,11 @@ public class AssemblerGUI extends Application implements UserInterface {
         codeTab.setContent(new VBox(codeEditor));
         
         // File explorer tab
-        fileExplorerTab = new Tab("Files");
+        Label tabLabelForFile = new Label("Files");
+        tabLabelForFile.setStyle("-fx-text-fill: white;");
+        fileExplorerTab = new Tab();
+        fileExplorerTab.setGraphic(tabLabelForFile); 
+
         fileExplorer = new TreeView<>();
         fileExplorer.setRoot(new TreeItem<>("Project"));
         fileExplorerTab.setContent(fileExplorer);
@@ -362,7 +371,11 @@ public class AssemblerGUI extends Application implements UserInterface {
         centerTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
         
         // Machine code tab
-        machineCodeTab = new Tab("Machine Code");
+        Label tabLabelForMachineCode = new Label("Machine Code");
+        tabLabelForMachineCode.setStyle("-fx-text-fill: white;");
+
+        machineCodeTab = new Tab();
+        machineCodeTab.setGraphic(tabLabelForMachineCode);
         machineCodeTable = new TableView<>();
         
         TableColumn<MachineCodeEntry, String> addressCol = new TableColumn<>("Address");
@@ -377,7 +390,11 @@ public class AssemblerGUI extends Application implements UserInterface {
         machineCodeTab.setContent(new VBox(machineCodeTable));
         
         // Console output tab
-        consoleTab = new Tab("Console");
+        Label tabLabelForConsole = new Label("Console");
+        tabLabelForConsole.setStyle("-fx-text-fill: white;");
+
+        consoleTab = new Tab();
+        consoleTab.setGraphic(tabLabelForConsole);
         consoleOutput = new TextArea();
         consoleOutput.setEditable(false);
         consoleOutput.getStyleClass().add("console-output");
@@ -395,7 +412,12 @@ public class AssemblerGUI extends Application implements UserInterface {
         rightTabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
         
         // Registers tab
-        registersTab = new Tab("Registers");
+        Label tabLabelForRegisters = new Label("Registers");
+        tabLabelForRegisters.setStyle("-fx-text-fill: white;");
+    
+        registersTab = new Tab();
+        registersTab.setGraphic(tabLabelForRegisters);
+
         registersPanel = new GridPane();
         registersPanel.setHgap(10);
         registersPanel.setVgap(5);
@@ -403,7 +425,11 @@ public class AssemblerGUI extends Application implements UserInterface {
         registersTab.setContent(new VBox(registersPanel));
         
         // Memory tab
-        memoryTab = new Tab("Memory");
+        Label tabLabelForMemory = new Label("Memory");
+        tabLabelForMemory.setStyle("-fx-text-fill: white;");
+        memoryTab = new Tab();
+        memoryTab.setGraphic(tabLabelForMemory);
+
         memoryTable = new TableView<>();
         
         TableColumn<MemoryEntry, String> memAddrCol = new TableColumn<>("Address");
@@ -418,18 +444,30 @@ public class AssemblerGUI extends Application implements UserInterface {
         memoryTab.setContent(new VBox(memoryTable));
         
         // Breakpoints tab
-        breakpointsTab = new Tab("Breakpoints");
+        Label tabLabelForBreakpoints = new Label("Breakpoints");
+        tabLabelForBreakpoints.setStyle("-fx-text-fill: white;");
+        breakpointsTab = new Tab();
+        breakpointsTab.setGraphic(tabLabelForBreakpoints);
+
         breakpointsPanel = new VBox(10);
         breakpointsPanel.setPadding(new Insets(10));
         breakpointsTab.setContent(breakpointsPanel);
         
-        // AI Assistant tab
-        aiTab = new Tab("AI Assistant");
+        // AI Assistant tab 
+        Label tabLabelForAI = new Label("AI Assistant");
+        tabLabelForAI.setStyle("-fx-text-fill: white;");
+        aiTab = new Tab();
+        aiTab.setGraphic(tabLabelForAI);
+        
         createAIPanel();
         aiTab.setContent(aiPanel);
 
         // Simulator Controls tab
-        simulatorControlTab = new Tab("Simulator Controls");
+        Label tabLabelForSimulator = new Label("Simulator Controls");
+        tabLabelForSimulator.setStyle("-fx-text-fill: white;");
+        simulatorControlTab = new Tab();
+        simulatorControlTab.setGraphic(tabLabelForSimulator);
+
         createSimulatorControls();
         simulatorControlTab.setContent(simulatorPanel);
         
