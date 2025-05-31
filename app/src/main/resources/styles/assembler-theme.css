@@ -233,7 +233,7 @@
 
 .table-view .column-header-background {
     -fx-background-color: -fx-background-secondary;
-    -fx-border-color: #3C3C3C;
+    -fx-border-color: #1E1E1E;
     -fx-border-width: 0 0 1 0;
 }
 
@@ -246,25 +246,29 @@
     -fx-padding: 8 5 8 5;
 }
 
+
+/* Make all table rows and cells have persistent gray background and white text */
+
+/* Make all table rows and cells have persistent gray background and white text */
+.table-view .table-row-cell {
+    -fx-background-color: #1E1E1E !important;
+    -fx-text-fill: #FFFFFF !important;
+}
+.table-view .table-row-cell:selected {
+    -fx-background-color: #2196F3 !important;
+    -fx-text-fill: #FFFFFF !important;
+}
+.table-view .table-row-cell:hover {
+    -fx-background-color: #555555 !important;
+    -fx-text-fill: #FFFFFF !important;
+}
 .table-view .table-cell {
-    -fx-background-color: transparent;
-    -fx-text-fill: -fx-text-color;
+    -fx-background-color: #1E1E1E !important;
+    -fx-text-fill: #FFFFFF !important;
     -fx-border-color: #3C3C3C;
     -fx-border-width: 0 0 1 0;
     -fx-padding: 5;
     -fx-font-family: "Consolas", "Monaco", monospace;
-}
-
-.table-row-cell:selected {
-    -fx-background-color: -fx-primary-color;
-}
-
-.table-row-cell:selected .table-cell {
-    -fx-text-fill: white;
-}
-
-.table-row-cell:hover {
-    -fx-background-color: -fx-background-tertiary;
 }
 
 /* === Buttons === */

@@ -382,6 +382,10 @@ public class AssemblerGUI extends Application implements UserInterface {
         TableColumn<MachineCodeEntry, String> bytesCol = new TableColumn<>("Machine Code");
         TableColumn<MachineCodeEntry, String> asmCol = new TableColumn<>("Assembly");
         
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        bytesCol.setCellValueFactory(new PropertyValueFactory<>("machineCode"));
+        asmCol.setCellValueFactory(new PropertyValueFactory<>("assembly"));
+
         addressCol.setPrefWidth(80);
         bytesCol.setPrefWidth(120);
         asmCol.setPrefWidth(200);
