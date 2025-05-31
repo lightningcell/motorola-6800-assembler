@@ -216,8 +216,7 @@
 
 /* === Console Output === */
 .console-output {
-    -fx-background-color: #0C0C0C;
-    -fx-text-fill: #CCCCCC;
+    -fx-text-fill: #000000 !important;
     -fx-font-family: "Consolas", "Monaco", monospace;
     -fx-font-size: 12px;
     -fx-border-color: #3C3C3C;

@@ -1565,6 +1565,8 @@ public class AssemblerGUI extends Application implements UserInterface {
                 machineCodeData.add(entry);
             }
         }
+
+        machineCodeTable.setItems(machineCodeData);
     }
     
     /**
